@@ -1,0 +1,30 @@
+{
+
+	"manifest_version": 3,
+	"name": "AutoEdClub",
+	"author": "Arty",
+	"description": "A chromium extension to auto-complete EdClub exercises",
+	"version": "1.0.0",
+	"content_scripts": [
+		{
+			"js": [ "AutoEDClub/injection.js" ],
+			"matches": [ "*://*.edclub.com/sportal/*/*.play" ]
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": [ "AutoEDClub/core.js" ],
+			"matches": [ "<all_urls>" ]
+		}
+	],
+	"action": {
+		"default_popup": "AutoEDClub/popup.html"
+	},
+	"icons": {
+		"16": "AutoEDClub/icons/16.png",
+		"32": "AutoEDClub/icons/32.png",
+		"48": "AutoEDClub/icons/48.png",
+		"128": "AutoEDClub/icons/128.png"
+	},
+	"permissions": [ "storage" ]
+}
