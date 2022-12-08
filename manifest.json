@@ -1,7 +1,7 @@
 {
 
 	"manifest_version": 3,
-	"name": "AutoEdClub",
+	"name": "Auto-EDClub",
 	"author": "Arty",
 	"description": "A chromium extension to auto-complete EdClub exercises",
 	"version": "1.0.0",
