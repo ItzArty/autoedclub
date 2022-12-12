@@ -8,7 +8,7 @@
 	"content_scripts": [
 		{
 			"js": [ "AutoEDClub/injection.js" ],
-			"matches": [ "*://*.edclub.com/sportal/*/*.play" ]
+			"matches": [ "*://*.edclub.com/sportal/*/*.play", "*://*.typingclub.com/sportal/*/*.play" ]
 		}
 	],
 	"web_accessible_resources": [
