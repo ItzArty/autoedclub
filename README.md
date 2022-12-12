@@ -1,5 +1,5 @@
 # AutoEDClub
-An extension to auto-complete EdClub exercises
+An extension to auto-complete EdClub/TypingClub exercises
 
 ## Usage
 
