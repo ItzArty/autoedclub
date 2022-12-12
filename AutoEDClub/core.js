@@ -1,11 +1,38 @@
 
+const observer = new MutationObserver( ( mutations ) => {
+
+	mutations.forEach( ( mutation ) => {
+
+		const nodes = [ ... mutation.removedNodes ];
+
+		nodes.forEach( ( node ) => {
+
+			if( node.nodeName == "INPUT" && node.baseURI.includes( ".play" ) ) {
+
+				stopAutoComplete( );
+
+				possible = false;
+
+			}
+
+		} );
+
+	} );
+
+} );
+
+observer.observe( document.body, {
+
+	childList: true
+
+} );
+
 const overrides = {
 
 	[ String.fromCharCode( 160 ) ]: ' '
 
 }
 
-let lastChar = 0;
 let _break = true;
 let running = false;
 const keyres = ( e ) => {
@@ -18,6 +45,10 @@ const keyres = ( e ) => {
 const autoComplete = async ( delay, variation ) => {
 
 	running = true;
+	_break = false;
+
+	document.onkeyup = keyres;
+	document.onkeydown = keyres;
 
 	const elements = [ ... document.querySelectorAll( ".token span.token_unit._clr" ) ];
 
@@ -29,11 +60,11 @@ const autoComplete = async ( delay, variation ) => {
 
 	} ).map( c => overrides.hasOwnProperty( c ) ? overrides[ c ] : c );
 
-	for( ( lastChar > 0 ) ? lastChar : lastChar = 0; lastChar < characters.length; lastChar++ ) {
+	for( let i = 0; i < characters.length; i++ ) {
 
 		if( _break ) return;
 
-		window.core.record_keydown_time( characters[ lastChar ] );
+		window.core.record_keydown_time( characters[ i ] );
 
 		await new Promise( r => setTimeout( r, Math.random( ) * ( ( delay + variation ) - ( delay - variation ) ) + ( delay - variation ) ) )
 
@@ -41,28 +72,15 @@ const autoComplete = async ( delay, variation ) => {
 
 }
 
-document.addEventListener( "AEDC", ( e ) => {
+const stopAutoComplete = ( ) => {
 
-	if( running ) {
+	_break = true;
 
-		_break = true;
+	running = false;
 
-		running = false;
-		
-		document.onkeyup = ( ) => { }
-		document.onkeydown = ( ) => { }
+	document.onkeyup = ( ) => { }
+	document.onkeydown = ( ) => { }
 
-	} else {
+}
 
-		_break = false;
-
-		lastChar = 0;
-		
-		document.onkeyup = keyres;
-		document.onkeydown = keyres;
-		
-		autoComplete( e.detail.keystrokeDelay, e.detail.delayVariation );
-
-	}
-
-} );
+document.addEventListener( "AEDC", ( e ) => running ? stopAutoComplete( ) : autoComplete( e.detail.keystrokeDelay, e.detail.delayVariation ) );
