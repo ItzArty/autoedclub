@@ -17,3 +17,5 @@ chrome.storage.local.get( [ "keystrokeDelay", "delayVariation" ], ( res ) => {
 
 ksdElement.onchange = ( ) => chrome.storage.local.set( { keystrokeDelay: Number( ksdElement.value ) } )
 dvElement.onchange = ( ) => chrome.storage.local.set( { delayVariation: Number( dvElement.value ) } )
+
+document.querySelector( "brand" ).onclick = ( ) => window.open( "https://www.itzarty.cf", "_blank_" );
