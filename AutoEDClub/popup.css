@@ -11,7 +11,7 @@ h1 {
 	margin-bottom: 1.5rem;
 	background-image: linear-gradient( 270deg, #ffe300, #ffa207 );
 	background-size: 400% 400%;
-	animation: hlText 5s ease infinite;
+	animation: hl 5s ease infinite;
 	-webkit-background-clip: text;
 	color: transparent;
 	text-align: center;
@@ -47,12 +47,35 @@ h3 {
 hl {
 	background-image: linear-gradient( 270deg, #ffe300, #ffa207 );
 	background-size: 400% 400%;
-	animation: hlText 5s ease infinite;
+	animation: hl 5s ease infinite;
 	-webkit-background-clip: text;
 	color: transparent;
 }
-@keyframes hlText {
+@keyframes hl {
     0% { background-position: 0% 50% }
     50% { background-position: 100% 50% }
     100% { background-position: 0% 50% }
+}
+brand {
+	display: flex;
+	height: 2.5rem;
+	background-color: #252525;
+	justify-content: center;
+	align-items: center;
+	margin: 1rem -1rem -1rem -1rem;
+	border-radius: 4px;
+	cursor: pointer;
+	color: #999;
+	transition: 0.15s;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	font-weight: bolder;
+}
+brand:hover {
+	color: #fff;
+	background-image: linear-gradient( 270deg, #ffe300, #ffa207 );
+	background-size: 400% 400%;
+	animation: hlText 5s ease infinite;
+	color: #333;
 }
