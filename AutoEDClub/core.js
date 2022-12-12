@@ -8,12 +8,18 @@ const overrides = {
 let lastChar = 0;
 let _break = true;
 let running = false;
+const keyres = ( e ) => {
+	
+	e.preventDefault( );
+	return;
+	
+}
 
 const autoComplete = async ( delay, variation ) => {
 
 	running = true;
 
-	const elements = [ ... document.querySelectorAll( ".token span.token_unit" ) ];
+	const elements = [ ... document.querySelectorAll( ".token span.token_unit._clr" ) ];
 
 	const characters = elements.map( element => {
 
@@ -42,11 +48,19 @@ document.addEventListener( "AEDC", ( e ) => {
 		_break = true;
 
 		running = false;
+		
+		document.onkeyup = ( ) => { }
+		document.onkeydown = ( ) => { }
 
 	} else {
 
 		_break = false;
 
+		lastChar = 0;
+		
+		document.onkeyup = keyres;
+		document.onkeydown = keyres;
+		
 		autoComplete( e.detail.keystrokeDelay, e.detail.delayVariation );
 
 	}
