@@ -3,8 +3,8 @@ let keystrokeDelay = 100;
 let delayVariation = 10;
 
 const element = document.createElement( "script" );
-element.setAttribute( "type", "text/javascript" );
-element.setAttribute( "src", chrome.runtime.getURL( "AutoEDClub/core.js" ) );
+element.type = "text/javascript";
+element.src = chrome.runtime.getURL( "AutoEDClub/core.js" );
 document.body.appendChild( element );
 
 document.onkeydown = ( e ) => {
