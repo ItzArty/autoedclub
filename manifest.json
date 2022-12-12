@@ -3,12 +3,12 @@
 	"manifest_version": 3,
 	"name": "AutoEDClub",
 	"author": "Arty",
-	"description": "A chromium extension to auto-complete EdClub exercises",
-	"version": "1.0.1",
+	"description": "A chromium extension to auto-complete EDClub exercises",
+	"version": "1.0.2",
 	"content_scripts": [
 		{
 			"js": [ "AutoEDClub/injection.js" ],
-			"matches": [ "*://*.edclub.com/sportal/*/*.play", "*://*.typingclub.com/sportal/*/*.play" ]
+			"matches": [ "*://*.edclub.com/sportal/*", "*://*.typingclub.com/sportal/*" ]
 		}
 	],
 	"web_accessible_resources": [
@@ -18,7 +18,7 @@
 		}
 	],
 	"action": {
-		"default_popup": "AutoEDClub/popup.html"
+		"default_popup": "AutoEDClub/popup/index.html"
 	},
 	"icons": {
 		"16": "AutoEDClub/icons/16.png",
