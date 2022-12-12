@@ -11,8 +11,6 @@ const observer = new MutationObserver( ( mutations ) => {
 
 				stopAutoComplete( );
 
-				possible = false;
-
 			}
 
 		} );
