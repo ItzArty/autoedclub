@@ -4,9 +4,6 @@ An extension to auto-complete EDClub/TypingClub exercises
 ## Usage
 
 Press `F8` to toggle auto-completion, to customize your speeds, you may change the *keystroke delay* and *delay variation* to your liking in the popup menu of the extension.
-## TODO
-
-* Get the extension on Chrome store
 
 ## Installation
 
@@ -17,4 +14,6 @@ Press `F8` to toggle auto-completion, to customize your speeds, you may change t
 4. Click on the button `Load unpacked` and select the extracted folder
 5. You're good to go!
 
-lmao auto erectile dysfunction club... get it?
+## TODO
+
+* Get the extension on Chrome store
