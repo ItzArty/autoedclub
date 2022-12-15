@@ -14,7 +14,7 @@ Press `F8` to toggle auto-completion, to customize your speeds, you may change t
 3. Confirm
 4. You're good to go!
 
-### 
+### Manual (Devmode)
 
 1. Download copy of the repo from GitHub
 2. Extract the folder from the ZIP file
