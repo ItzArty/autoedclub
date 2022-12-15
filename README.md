@@ -26,4 +26,4 @@ Press `F8` to toggle auto-completion, to customize your speeds, you may change t
 
 ## TODO
 
-* Get the extension on Chrome store
+* ~~Get the extension on Chrome store~~
