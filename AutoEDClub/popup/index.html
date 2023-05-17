@@ -5,15 +5,46 @@
 	</head>
 	<body>
 		<h1>AutoEDClub</h1>
+		<hr />
 		<div class="input_group">
-			<label>Keystroke delay (ms)</label>
+			<label>
+				<img src="../icons/hourglass.svg" />
+				<span>Keystroke delay</span>
+				<small>ms</small>
+				<div>Determines how long should the autocompleter wait between simulating another keystroke (in milliseconds)</div>
+			</label>
 			<input type="number" id="_aedc_ksd" value="100" min="10" />
 		</div>
 		<div class="input_group">
-			<label>Delay variation (ms)</label>
+			<label>
+				<img src="../icons/dice.svg" />
+				<span>Delay variation</span>
+				<small>ms</small>
+				<div>Determines the extent, to which the keystroke delay can vary (in milliseconds)</div>
+			</label>
 			<input type="number" id="_aedc_dv" value="25" min="0" />
 		</div>
-		<h3>Press <hl>F8</hl> to toggle</h3>
-		<a href="https://www.itzarty.cf" target="_blank_">Created by Arty</a>
+		<hr />
+		<div class="input_group">
+			<label>
+				<img src="../icons/xmark.svg" />
+				<span>Mistake chance</span>
+				<small>%</small>
+				<div>Determines the likelyhood for the autocompleter to "make a mistake". Value is applied to per character chance basis (in percent)</div>
+			</label>
+			<input type="number" id="_aedc_mc" value="0" min="0" max="99" />
+		</div>
+		<div class="input_group">
+			<label>
+				<img src="../icons/clock.svg" />
+				<span>Correction time</span>
+				<small>ms</small>
+				<div>Determines how much time correcting a mistake will take (in milliseconds)</div>
+			</label>
+			<input type="number" id="_aedc_ct" value="150" min="0" />
+		</div>
+		<hr />
+		<h3>Press <b>F8</b> to toggle</h3>
+		<a href="https://www.itzarty.eu" target="_blank_">Created by Arty</a>
 	</body>
 </html>
