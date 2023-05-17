@@ -1,29 +1,32 @@
 
-const observer = new MutationObserver( ( mutations ) => {
+const rCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-	mutations.forEach( ( mutation ) => {
+const backspaceEvent = new KeyboardEvent( 'keydown', {
 
-		const nodes = [ ... mutation.removedNodes ];
-
-		nodes.forEach( ( node ) => {
-
-			if( node.nodeName == "INPUT" && node.baseURI.includes( ".play" ) ) {
-
-				stopAutoComplete( );
-
-			}
-
-		} );
-
-	} );
+	key: 'Backspace',
+	keyCode: 8,
+	code: 'Backspace',
+	which: 8,
+	bubbles: true,
+	cancelable: true
 
 } );
 
-observer.observe( document.body, {
+const observer = new MutationObserver( mutations => {
 
-	childList: true
+	for( const mutation of mutations ) {
+
+		for( const node of [ ... mutation.removedNodes ] ) {
+
+			if( node.nodeName == 'INPUT' && node.baseURI.includes( '.play' ) ) stopAutoComplete( );
+
+		}	
+
+	}
 
 } );
+
+observer.observe( document.body, { childList: true } );
 
 const overrides = {
 
@@ -33,14 +36,14 @@ const overrides = {
 
 let _break = true;
 let running = false;
-const keyres = ( e ) => {
+const keyres = e => {
 	
 	e.preventDefault( );
 	return;
 	
 }
 
-const autoComplete = async ( delay, variation ) => {
+const autoComplete = async ( delay, variation, mistakeChance, correctionTime ) => {
 
 	running = true;
 	_break = false;
@@ -48,23 +51,29 @@ const autoComplete = async ( delay, variation ) => {
 	document.onkeyup = keyres;
 	document.onkeydown = keyres;
 
-	const elements = [ ... document.querySelectorAll( ".token span.token_unit._clr" ) ];
+	const elements = [ ... document.querySelectorAll( '.token span.token_unit._clr' ) ];
 
-	const characters = elements.map( element => {
-
-		if( element.firstChild?.classList?.contains( "_enter" ) ) return "\n";
-
-		return element.textContent[ 0 ];
-
-	} ).map( c => overrides.hasOwnProperty( c ) ? overrides[ c ] : c );
+	const characters = elements.map( element => element.firstChild?.classList?.contains( '_enter' ) ? '\n' : element.textContent[ 0 ] ).map( c => overrides.hasOwnProperty( c ) ? overrides[ c ] : c );
 
 	for( let i = 0; i < characters.length; i++ ) {
 
 		if( _break ) return;
 
+		if( Math.random( ) < mistakeChance / 100 ) {
+
+			window.core.record_keydown_time( ' ' );
+
+			await new Promise( r => setTimeout( r, correctionTime / 2 ) );
+
+			document.dispatchEvent( backspaceEvent );
+
+			await new Promise( r => setTimeout( r, correctionTime / 2 ) );
+
+		}
+
 		window.core.record_keydown_time( characters[ i ] );
 
-		await new Promise( r => setTimeout( r, Math.random( ) * ( ( delay + variation ) - ( delay - variation ) ) + ( delay - variation ) ) )
+		await new Promise( r => setTimeout( r, Math.random( ) * ( ( delay + variation ) - ( delay - variation ) ) + ( delay - variation ) ) );
 
 	}
 
@@ -73,7 +82,6 @@ const autoComplete = async ( delay, variation ) => {
 const stopAutoComplete = ( ) => {
 
 	_break = true;
-
 	running = false;
 
 	document.onkeyup = ( ) => { }
@@ -81,4 +89,4 @@ const stopAutoComplete = ( ) => {
 
 }
 
-document.addEventListener( "AEDC", ( e ) => running ? stopAutoComplete( ) : autoComplete( e.detail.keystrokeDelay, e.detail.delayVariation ) );
+document.addEventListener( 'AEDC', e => running ? stopAutoComplete( ) : autoComplete( e.detail.keystrokeDelay, e.detail.delayVariation, e.detail.mistakeChance ) );
