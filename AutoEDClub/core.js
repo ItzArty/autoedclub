@@ -51,7 +51,7 @@ const autoComplete = async ( delay, variation, mistakeChance, correctionTime ) =
 
 	const elements = [ ... document.querySelectorAll( '.token span.token_unit._clr' ) ];
 
-	const characters = elements.map( element => element.firstChild?.classList.contains( '_enter' ) ? '\n' : element.textContent[ 0 ] ).map( c => overrides.hasOwnProperty( c ) ? overrides[ c ] : c );
+	const characters = elements.map( element => element.firstChild?.classList?.contains( '_enter' ) ? '\n' : element.textContent[ 0 ] ).map( c => overrides.hasOwnProperty( c ) ? overrides[ c ] : c );
 
 	for( let i = 0; i < characters.length; i++ ) {
 
