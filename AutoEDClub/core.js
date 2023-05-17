@@ -1,6 +1,4 @@
 
-const rCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
 const backspaceEvent = new KeyboardEvent( 'keydown', {
 
 	key: 'Backspace',
